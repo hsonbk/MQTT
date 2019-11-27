@@ -1,4 +1,5 @@
-# MQTT_Author: sondh
+# MQTT
+# Author: sondh
 A simple MQTT simulation using libmosquitto Mosquittopp library with C++
 
 Project include:
