@@ -8,7 +8,7 @@ myMosquitto::myMosquitto(const char* _id, const char* _host, int _port) :
     int ret;
     mosqpp::lib_init();
 
-    this->keepalive = 20;
+    this->keepalive = 60;
     // const char *mosquitto_strerror(int mosq_errno);
     // if (username_pw_set("sampleuser", "samplepass") != MOSQ_ERR_SUCCESS) {
     //     std::cout << "setting passwd failed" << std::endl;
@@ -55,17 +55,17 @@ void myMosquitto::on_disconnect(int rc){
    std::cout << "Disconnected (" << rc << ")" << std::endl;
 }
 
-void myMosquitto::on_publish(int mid) {
-    std::cout << "Published message with id: " << mid << std::endl;
-}
+// void myMosquitto::on_publish(int mid) {
+//     std::cout << "Published message succesful" << std::endl;
+// }
 
-void myMosquitto::on_subscribe(int mid, int qos_count, const int *granted_qos){
-    std::cout << "Subscribed(" << mid << ")" << std::endl;
-}
+// void myMosquitto::on_subscribe(int mid, int qos_count, const int *granted_qos){
+//     std::cout << "Subscribed successful(" << mid << ")" << std::endl;
+// }
 
-void myMosquitto::on_unsubscribe(int mid){
-    std::cout << "Unsubscribed(" << mid << ")" << std::endl;
-}
+// void myMosquitto::on_unsubscribe(int mid){
+//     std::cout << "Unsubscribed successful(" << mid << ")" << std::endl;
+// }
 
 void myMosquitto::myPublish(std::string topic, std::string mess){
     // std::cout << "Topic: ";
@@ -80,16 +80,20 @@ void myMosquitto::myPublish(std::string topic, std::string mess){
 }
 void myMosquitto::subscribe_to_topic(std::string topic){
     int ret = subscribe(NULL, topic.c_str());
-    // if (ret != MOSQ_ERR_SUCCESS){
-    //     std::cout << "Subcribe failed" << std::endl;
-    // }
-    // else std::cout << "Subcribe success " << std::endl;
+    if (ret != MOSQ_ERR_SUCCESS){
+        std::cout << "Subcribe failed" << std::endl;
+    }
+    else std::cout << "Subcribe success " << std::endl;
 }
 void myMosquitto::unsubscribe_from_topic(std::string topic){
     int ret = unsubscribe(NULL, topic.c_str());
     if (ret != MOSQ_ERR_SUCCESS){
-        std::cout << "Unsubcribe failed" << std::endl;
+        std::cout << "Unsubcribe topic " << topic << std::endl;
     }
-    else std::cout << "Unsubcribe success " << std::endl;
+    else std::cout << "Unsubcribe failed." << std::endl;
     // return (MOSQ_ERR_SUCCESS);
 }
+
+// void myMosquitto::receive_from_topic(){
+
+// }

@@ -14,10 +14,10 @@ public:
     void myPublish(std::string topic, std::string mess);
 private:
     void on_connect(int rc);
-    void on_publish(int mid);
+    // void on_publish(int mid);
     void on_disconnect(int rc);
-    void on_subscribe(int mid, int qos_count, const int *granted_qos);
-    void on_unsubscribe(int mid);
+    // void on_subscribe(int mid, int qos_count, const int *granted_qos);
+    // void on_unsubscribe(int mid);
 
     const char* host;
     const char* id;

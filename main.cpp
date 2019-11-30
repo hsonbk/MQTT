@@ -3,7 +3,7 @@
 #include <signal.h>
 
 
-const char *id = "test1";
+const char *id = "device";
 std::string _topic;
 const char *host = "test.mosquitto.org";
 int port = 1883;
@@ -24,17 +24,18 @@ int main(int argc, char *argv[])
         std::cout << "Topic: ";
         std::getline(std::cin,_topic);
         mqtt->subscribe_to_topic(_topic);
-        sleep(1);
+        sleep(2);
         std::cout << "Enter message: ";
         std::getline(std::cin,mess);
         // std::cout << "Enter message: ";
         // std::getline(std::cin,mess);
-        mqtt->myPublish(_topic, mess);   
-        mqtt->unsubscribe_from_topic(_topic);
+        mqtt->myPublish(_topic, mess);
+        sleep(2); 
+        //mqtt->unsubscribe_from_topic(_topic);
         // std::cout << "About to delete mqtt" << std::endl;
         //delete mqtt;
         // std::cout << "Mqtt deleted" << std::endl;
-        sleep(2);
+        sleep(3);
         }
     return 0;
 }
