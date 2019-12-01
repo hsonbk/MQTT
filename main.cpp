@@ -3,7 +3,7 @@
 #include <signal.h>
 
 
-const char *id = "device";
+const char *id;
 std::string _topic;
 const char *host = "test.mosquitto.org";
 int port = 1883;
