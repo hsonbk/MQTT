@@ -40,6 +40,18 @@ myMosquitto::~myMosquitto()
     mosqpp::lib_cleanup();
 }
 
+void myMosquitto::on_message(const struct mosquitto_message *message){
+    std::string payload = std::string(static_cast<char *>(message->payload));
+    std::string topic = std::string(message->topic);
+
+    std::cout << "payload: " << payload << std::endl;
+    std::cout << "topic: " << topic << std::endl;
+    std::cout << "On message( QoS: " << message->mid 
+                    << " topic: " << std::string(message->topic) << " - message: "
+                    << std::string((char *)message->payload, message->payloadlen) << ")" << std::endl;
+    }
+
+
 void myMosquitto::on_connect(int rc){
     // std::cout << "Connected success " << rc << std::endl;
     if ( rc == 0 ) {
@@ -76,7 +88,8 @@ void myMosquitto::myPublish(std::string topic, std::string mess){
     if (ret != MOSQ_ERR_SUCCESS){
         std::cout << "Send failed." << std::endl;
     }
-    else std::cout << "Message: " << mess << " >>> published to: " << topic << std::endl;
+    else std::cout << "Send success " << std::endl;
+    // << mess << " >>> published to: " << topic << std::endl;
 }
 void myMosquitto::subscribe_to_topic(std::string topic){
     int ret = subscribe(NULL, topic.c_str());
