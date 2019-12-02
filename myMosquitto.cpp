@@ -47,7 +47,7 @@ void myMosquitto::on_message(const struct mosquitto_message *message){
     std::cout << "payload: " << payload << std::endl;
     std::cout << "topic: " << topic << std::endl;
     std::cout << "On message( QoS: " << message->mid 
-                    << " topic: " << std::string(message->topic) << " - message: "
+                    << " - Topic: " << std::string(message->topic) << " - Message: "
                     << std::string((char *)message->payload, message->payloadlen) << ")" << std::endl;
     }
 
@@ -96,7 +96,7 @@ void myMosquitto::subscribe_to_topic(std::string topic){
     if (ret != MOSQ_ERR_SUCCESS){
         std::cout << "Subcribe failed" << std::endl;
     }
-    else std::cout << "Subcribe success " << std::endl;
+    else std::cout << "Subcribe success " << topic << std::endl;
 }
 void myMosquitto::unsubscribe_from_topic(std::string topic){
     int ret = unsubscribe(NULL, topic.c_str());
