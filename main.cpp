@@ -18,7 +18,7 @@ void signalHandle(int signum){
 
 int main(int argc, char *argv[])
 {   
-    // myMosquitto* mqtt;
+    myMosquitto* mqtt;
     signal(SIGINT, signalHandle);
     while(1){
         mqtt = new myMosquitto(id, host, port);
