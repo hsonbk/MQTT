@@ -1,4 +1,4 @@
-# MQTT
+# MQTT - Project 1: Lumi Smarthome Intern
 # Author: sondh
 A simple MQTT simulation using libmosquitto Mosquittopp library with C++
 A 
